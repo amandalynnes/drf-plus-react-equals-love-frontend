@@ -12,7 +12,7 @@ function App() {
   }, [])
   return (
     <>
-      <h1>hello govna</h1>
+      <h1>Ghost Post Machine</h1>
       {posts.map ((p)=> (
       <ul>
         <li>{p.text}</li>
