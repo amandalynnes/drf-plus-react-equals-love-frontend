@@ -59,3 +59,7 @@ For example:
 https://github.com/kenzie-se-q4/drf-plus-react-equals-love-frontend-<github_username>
 ```
 
+```
+Backend:
+https://github.com/kenzie-se-q4/drf-plus-react-equals-love-backend-amandalynnes
+```
