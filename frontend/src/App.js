@@ -23,33 +23,51 @@ const Homepage = () => {
   return (
     <>
       <Header/>
-      <Link to='/about'>|Aboutpage|</Link>
+      <Link to='/highestRated'>|Highest Rated|</Link>
       <Link to='/boasts'>|Boasts|</Link>
 
       <h1>Ghost Post Machine</h1>
       {posts.map ((p)=> (
       <ul>
-        <li>{p.text}</li>
-        <li>{p.likes}</li>
-        <li>{p.dislikes}</li>
-        <li>{p.time_created}</li>
-        <li>{p.type_of_post}</li>
-        <li>{p.total_votes}</li>
+        <li>post: {p.text}</li>
+        <li>num of likes: {p.likes}</li>
+        <li>num of dislikes: {p.dislikes}</li>
+        <li>posted: {p.time_created}</li>
+        <li>post type: {p.type_of_post}</li>
+        <li>total votes: {p.total_votes}</li>
       </ul>
       ))}
     </>
   );
 }
 
-const Aboutpage = () => {
+const HighestRated = () => {
+  const [highestRated, sethighestRated] = useState([])
+  const url = 'http://127.0.0.1:8000/api/posts/highest_rated'
+  useEffect(() => {
+    fetch(url)
+      .then(res => res.json())
+      .then(data => sethighestRated(data));
+  }, [])
+
   return (
-    <div>
+    <>
       <Header/>
-      <h1>Aboutpage</h1>
       <Link to='/'>Go to Homepage</Link>
-    </div>
-  )
-};
+      <h1>Highest Rated</h1>
+      {highestRated.map ((h)=> (
+      <ul>
+        <li>post: {h.text}</li>
+        <li>num of likes: {h.likes}</li>
+        <li>num of dislikes: {h.dislikes}</li>
+        <li>posted: {h.time_created}</li>
+        <li>post type: {h.type_of_post}</li>
+        <li>total votes: {h.total_votes}</li>
+      </ul>
+      ))}
+    </>
+  );
+}
 
 const Boasts = () => {
   const [boasts, setBoasts] = useState([])
@@ -67,16 +85,16 @@ const Boasts = () => {
       <h1>Boasts</h1>
       {boasts.map ((b)=> (
       <ul>
-        <li>{b.text}</li>
-        <li>{b.likes}</li>
-        <li>{b.dislikes}</li>
-        <li>{b.time_created}</li>
-        <li>{b.type_of_post}</li>
-        <li>{b.total_votes}</li>
+        <li>post: {b.text}</li>
+        <li>num of likes: {b.likes}</li>
+        <li>num of dislikes: {b.dislikes}</li>
+        <li>posted: {b.time_created}</li>
+        <li>post type: {b.type_of_post}</li>
+        <li>total votes: {b.total_votes}</li>
       </ul>
       ))}
     </>
   );
 }
 
-export {Homepage, Aboutpage, Boasts};
+export {Homepage, HighestRated, Boasts};

@@ -4,13 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import  {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import {Homepage, Aboutpage, Boasts} from './App';
+import {Homepage, HighestRated, Boasts} from './App';
 
 ReactDOM.render(
   <Router>
     <Switch>
       <Route exact path="/" component={Homepage}/>
-      <Route exact path="/about" component={Aboutpage}/>
+      <Route exact path="/highestRated" component={HighestRated}/>
       <Route exact path="/boasts" component={Boasts}/>
 
     </Switch>
