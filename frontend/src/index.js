@@ -4,18 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import  {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import {Homepage, Aboutpage} from './App';
+import {Homepage, Aboutpage, Boasts} from './App';
 
 ReactDOM.render(
   <Router>
     <Switch>
       <Route exact path="/" component={Homepage}/>
       <Route exact path="/about" component={Aboutpage}/>
+      <Route exact path="/boasts" component={Boasts}/>
+
     </Switch>
   </Router>,
-//   <React.StrictMode>
-//   <App />
-// </React.StrictMode>,
   document.getElementById('root')
   
 );
