@@ -14,6 +14,7 @@ ReactDOM.render(
       <Route exact path="/highestRated" component={HighestRated}/>
       <Route exact path="/boasts" component={Boasts}/>
       <Route exact path="/roasts" component={Roasts}/>
+
     </Switch>
   </Router>,
   document.getElementById('root')

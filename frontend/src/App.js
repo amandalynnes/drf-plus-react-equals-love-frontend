@@ -2,6 +2,33 @@ import logo from './logo.svg';
 import './App.css';
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
+
+const UpVote = (id) => {
+  const url = `http://127.0.0.1:8000/api/posts/${id}/up_vote/`
+
+    axios.post(url, {
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
+
+const DownVote = (id) => {
+  const url = `http://127.0.0.1:8000/api/posts/${id}/down_vote/`
+
+    axios.post(url, {
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
 
 const Header = () => {
   return (
@@ -18,7 +45,7 @@ const Homepage = () => {
     fetch(url)
       .then(res => res.json())
       .then(data => setPosts(data));
-  }, [])
+  }, [posts])
 
   return (
     <>
@@ -33,11 +60,11 @@ const Homepage = () => {
       {posts.map ((p)=> (
       <ul>
         <li>post: {p.text}</li>
-        {/* <li>num of likes: {p.likes}</li>
-        <li>num of dislikes: {p.dislikes}</li> */}
         <li>posted: {p.time_created}</li>
         <li>post type: {p.type_of_post}</li>
         <li>total votes: {p.total_votes}</li>
+        <button onClick={() => UpVote(p.id)}>Like</button>
+        <button onClick={() => DownVote(p.id)}>DisLike</button>
       </ul>
       ))}
     </>
@@ -67,7 +94,7 @@ const HighestRated = () => {
     fetch(url)
       .then(res => res.json())
       .then(data => sethighestRated(data));
-  }, [])
+  }, [highestRated])
 
   return (
     <>
@@ -81,11 +108,11 @@ const HighestRated = () => {
       {highestRated.map ((h)=> (
       <ul>
         <li>post: {h.text}</li>
-        {/* <li>num of likes: {h.likes}</li>
-        <li>num of dislikes: {h.dislikes}</li> */}
         <li>posted: {h.time_created}</li>
         <li>post type: {h.type_of_post}</li>
         <li>total votes: {h.total_votes}</li>
+        <button onClick={() => UpVote(h.id)}>Like</button>
+        <button onClick={() => DownVote(h.id)}>DisLike</button>
       </ul>
       ))}
     </>
@@ -99,7 +126,7 @@ const Boasts = () => {
     fetch(url)
       .then(res => res.json())
       .then(data => setBoasts(data));
-  }, [])
+  }, [boasts])
 
   return (
     <>
@@ -113,11 +140,11 @@ const Boasts = () => {
       {boasts.map ((b)=> (
       <ul>
         <li>post: {b.text}</li>
-        {/* <li>num of likes: {b.likes}</li>
-        <li>num of dislikes: {b.dislikes}</li> */}
         <li>posted: {b.time_created}</li>
         <li>post type: {b.type_of_post}</li>
         <li>total votes: {b.total_votes}</li>
+        <button onClick={() => UpVote(b.id)}>Like</button>
+        <button onClick={() => DownVote(b.id)}>DisLike</button>
       </ul>
       ))}
     </>
@@ -131,7 +158,7 @@ const Roasts = () => {
     fetch(url)
       .then(res => res.json())
       .then(data => setRoasts(data));
-  }, [])
+  }, [roasts])
 
   return (
     <>
@@ -145,15 +172,16 @@ const Roasts = () => {
       {roasts.map ((r)=> (
       <ul>
         <li>post: {r.text}</li>
-        {/* <li>num of likes: {r.likes}</li>
-        <li>num of dislikes: {r.dislikes}</li> */}
         <li>posted: {r.time_created}</li>
         <li>post type: {r.type_of_post}</li>
         <li>total votes: {r.total_votes}</li>
+        <button onClick={() => UpVote(r.id)}>Like</button>
+        <button onClick={() => DownVote(r.id)}>DisLike</button>
       </ul>
       ))}
     </>
   );
 }
+
 
 export {Homepage, About, HighestRated, Boasts, Roasts};
