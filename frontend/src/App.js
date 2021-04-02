@@ -39,8 +39,6 @@ const Header = () => {
 };
 
 const Delete = (id) => {
-  // setDeleted(true);
-  //     console.log('deleted it!!!!')
       const url = `http://127.0.0.1:8000/api/posts/${id}/`
       axios.delete(url, {
       })
@@ -54,8 +52,6 @@ const Delete = (id) => {
 
 const Homepage = () => {
   const [posts, setPosts] = useState([])
-  // const [deletePost, setDeletePost] = useState([]);
-
   const url = 'http://127.0.0.1:8000/api/posts/'
   useEffect(() => {
     fetch(url)
@@ -114,7 +110,6 @@ const Post = () => {
   const [submitted, setSubmitted] = useState(false);
   const [valid, setValid] = useState(false);
 
-
   const handleTextInputChange = (event) => {
     event.persist();
       setValues((values) => ({
@@ -132,14 +127,12 @@ const Post = () => {
   };
 
   const handleSubmit = (event) => {
-    console.log('handleSubmit is doing something', event.key)
     if (event.key === 'Enter') {
       event.preventDefault();
       if(values.text && values.type_of_post) {
           setValid(true);
       }
       setSubmitted(true);
-      console.log('submitted this!!!!')
       const url = `http://127.0.0.1:8000/api/posts/`
       axios.post(url, {
         ...values

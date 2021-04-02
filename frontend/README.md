@@ -11,7 +11,7 @@ https://www.freecodecamp.org/news/beginner-react-project-build-basic-forms-using
 
 People:
 
-Cesar Ramos, Kano Marvel
+Cesar Ramos, Kano Marvel, Peter Marsh
 
  -->
 
