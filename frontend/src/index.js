@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import  {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import {Homepage, About, HighestRated, Boasts, Roasts} from './App';
+import {Homepage, About, HighestRated, Boasts, Roasts, Post} from './App';
 
 ReactDOM.render(
   <Router>
@@ -14,6 +14,8 @@ ReactDOM.render(
       <Route exact path="/highestRated" component={HighestRated}/>
       <Route exact path="/boasts" component={Boasts}/>
       <Route exact path="/roasts" component={Roasts}/>
+      <Route exact path="/post" component={Post}/>
+
 
     </Switch>
   </Router>,

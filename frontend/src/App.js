@@ -54,9 +54,11 @@ const Homepage = () => {
       <Link to='/highestRated'>|Highest Rated|</Link>
       <Link to='/boasts'>|Boasts|</Link>
       <Link to='/roasts'>|Roasts|</Link>
+      <Link to='/post'>|Post|</Link>
 
 
       <h1>Ghost Post Machine</h1>
+
       {posts.map ((p)=> (
       <ul>
         <li>post: {p.text}</li>
@@ -87,6 +89,78 @@ const About = () => {
 	)
 };
 
+const Post = () => {
+  const [values, setValues] = useState({
+    text: '',
+    type_of_post: '',
+  })
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleTextInputChange = (event) => {
+    event.persist();
+      setValues((values) => ({
+        ...values,
+        text: event.target.value,
+      }));
+  };
+
+  const handleTypeOfPostInputChange = (event) => {
+    event.persist();
+      setValues((values) => ({
+        ...values,
+        type_of_post: event.target.value,
+      }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+  
+
+	return (
+		<div>
+        <Header/>
+				<Link to='/'>|Homepage|</Link>
+				<h1>Post a Boast or Roast</h1>
+        <p>
+          Helpul Hint: type "BO" for "boast", or "RO for "roast" in the post type field.
+        </p>
+        
+        <form class='register-form' onSubmit={handleSubmit}>
+        <label>
+          Message:
+          <input
+            id="text"
+            class="form-field"
+            type="text"
+            placeholder="Write post here"
+            name="post"
+            value={values.text}
+            onChange={handleTextInputChange}
+          />
+        </label>
+
+        <label>
+          Post Type:
+          <input
+              id="type_of_post"
+              class="form-field"
+              type="text"
+              placeholder="RO"
+              name="post type"
+              value={values.type_of_post}
+              onChange={handleTypeOfPostInputChange}
+          />
+        </label>
+        {submitted && <div class='success-message'>Success! Thank you for posting. :)</div>}
+
+      </form>
+
+		</div>
+	)
+};
+
 const HighestRated = () => {
   const [highestRated, sethighestRated] = useState([])
   const url = 'http://127.0.0.1:8000/api/posts/highest_rated'
@@ -103,6 +177,7 @@ const HighestRated = () => {
       <Link to='/about'>|About|</Link>
       <Link to='/boasts'>|Boasts|</Link>
       <Link to='/roasts'>|Roasts|</Link>
+      <Link to='/post'>|Post|</Link>
 
       <h1>Highest Rated</h1>
       {highestRated.map ((h)=> (
@@ -135,6 +210,8 @@ const Boasts = () => {
       <Link to='/about'>|About|</Link>
       <Link to='/highestRated'>|Highest Rated|</Link>
       <Link to='/roasts'>|Roasts|</Link>
+      <Link to='/post'>|Post|</Link>
+
 
       <h1>Boasts</h1>
       {boasts.map ((b)=> (
@@ -167,6 +244,8 @@ const Roasts = () => {
       <Link to='/about'>|About|</Link>
       <Link to='/highestRated'>|Highest Rated|</Link>
       <Link to='/boasts'>|Boasts|</Link>
+      <Link to='/post'>|Post|</Link>
+
 
       <h1>Roasts</h1>
       {roasts.map ((r)=> (
@@ -184,4 +263,4 @@ const Roasts = () => {
 }
 
 
-export {Homepage, About, HighestRated, Boasts, Roasts};
+export {Homepage, About, HighestRated, Boasts, Roasts, Post};
