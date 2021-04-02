@@ -45,7 +45,7 @@ const Homepage = () => {
     fetch(url)
       .then(res => res.json())
       .then(data => setPosts(data));
-  }, [posts])
+  }, [])
 
   return (
     <>
@@ -115,13 +115,27 @@ const Post = () => {
   };
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    if(values.text && values.type_of_post) {
-        setValid(true);
-    }
-    setSubmitted(true);
+    console.log('handleSubmit is doing something', event.key)
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      if(values.text && values.type_of_post) {
+          setValid(true);
+      }
+      setSubmitted(true);
+      console.log('submitted this!!!!')
+      const url = `http://127.0.0.1:8000/api/posts/`
+      axios.post(url, {
+        ...values
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+      }
   }
-  
 
 	return (
 		<div>
@@ -159,6 +173,7 @@ const Post = () => {
               name="post type"
               value={values.type_of_post}
               onChange={handleTypeOfPostInputChange}
+              onKeyDown={handleSubmit}
           />
           {submitted && !values.text && <span id="type-of-post-error">Please enter valid post type: "BO" for boast or "RO" for roast.</span>}
 
@@ -177,7 +192,7 @@ const HighestRated = () => {
     fetch(url)
       .then(res => res.json())
       .then(data => sethighestRated(data));
-  }, [highestRated])
+  }, [])
 
   return (
     <>
@@ -210,7 +225,7 @@ const Boasts = () => {
     fetch(url)
       .then(res => res.json())
       .then(data => setBoasts(data));
-  }, [boasts])
+  }, [])
 
   return (
     <>
@@ -244,7 +259,7 @@ const Roasts = () => {
     fetch(url)
       .then(res => res.json())
       .then(data => setRoasts(data));
-  }, [roasts])
+  }, [])
 
   return (
     <>
