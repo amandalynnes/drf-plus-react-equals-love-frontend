@@ -95,6 +95,8 @@ const Post = () => {
     type_of_post: '',
   })
   const [submitted, setSubmitted] = useState(false);
+  const [valid, setValid] = useState(false);
+
 
   const handleTextInputChange = (event) => {
     event.persist();
@@ -112,10 +114,13 @@ const Post = () => {
       }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if(values.text && values.type_of_post) {
+        setValid(true);
+    }
     setSubmitted(true);
-  };
+  }
   
 
 	return (
@@ -127,7 +132,8 @@ const Post = () => {
           Helpul Hint: type "BO" for "boast", or "RO for "roast" in the post type field.
         </p>
         
-        <form class='register-form' onSubmit={handleSubmit}>
+        <p></p>
+      <form class='form' onSubmit={handleSubmit}>
         <label>
           Message:
           <input
@@ -139,8 +145,10 @@ const Post = () => {
             value={values.text}
             onChange={handleTextInputChange}
           />
-        </label>
+          {submitted && !values.text && <span id="text-error">Please enter a message with less than 280 characters.</span>}
 
+        </label>
+        <p></p>
         <label>
           Post Type:
           <input
@@ -152,11 +160,12 @@ const Post = () => {
               value={values.type_of_post}
               onChange={handleTypeOfPostInputChange}
           />
+          {submitted && !values.text && <span id="type-of-post-error">Please enter valid post type: "BO" for boast or "RO" for roast.</span>}
+
         </label>
-        {submitted && <div class='success-message'>Success! Thank you for posting. :)</div>}
+        {submitted && <div class='success-message'>Success! Thank you for posting.</div>}
 
       </form>
-
 		</div>
 	)
 };
