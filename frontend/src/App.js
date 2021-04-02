@@ -38,8 +38,24 @@ const Header = () => {
   )
 };
 
+const Delete = (id) => {
+  // setDeleted(true);
+  //     console.log('deleted it!!!!')
+      const url = `http://127.0.0.1:8000/api/posts/${id}/`
+      axios.delete(url, {
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+}
+
 const Homepage = () => {
   const [posts, setPosts] = useState([])
+  // const [deletePost, setDeletePost] = useState([]);
+
   const url = 'http://127.0.0.1:8000/api/posts/'
   useEffect(() => {
     fetch(url)
@@ -67,6 +83,7 @@ const Homepage = () => {
         <li>total votes: {p.total_votes}</li>
         <button onClick={() => UpVote(p.id)}>Like</button>
         <button onClick={() => DownVote(p.id)}>DisLike</button>
+        <button onClick={() => Delete(p.id)}>Trash</button>
       </ul>
       ))}
     </>
@@ -212,6 +229,7 @@ const HighestRated = () => {
         <li>total votes: {h.total_votes}</li>
         <button onClick={() => UpVote(h.id)}>Like</button>
         <button onClick={() => DownVote(h.id)}>DisLike</button>
+        <button onClick={() => Delete(h.id)}>Trash</button>
       </ul>
       ))}
     </>
@@ -246,6 +264,7 @@ const Boasts = () => {
         <li>total votes: {b.total_votes}</li>
         <button onClick={() => UpVote(b.id)}>Like</button>
         <button onClick={() => DownVote(b.id)}>DisLike</button>
+        <button onClick={() => Delete(b.id)}>Trash</button>
       </ul>
       ))}
     </>
@@ -280,6 +299,7 @@ const Roasts = () => {
         <li>total votes: {r.total_votes}</li>
         <button onClick={() => UpVote(r.id)}>Like</button>
         <button onClick={() => DownVote(r.id)}>DisLike</button>
+        <button onClick={() => Delete(r.id)}>Trash</button>
       </ul>
       ))}
     </>
